@@ -19,6 +19,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the application
 COPY . .
 
+# Ensure modules directory exists and is accessible
+RUN ls -la modules/
+RUN python -c "import sys; print('Python path:', sys.path)"
+
 # Create necessary directories
 RUN mkdir -p vectorestores chroma_db_document_open_source Results
 
