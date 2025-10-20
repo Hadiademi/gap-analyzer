@@ -20,6 +20,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the application
 COPY . .
 
+# Verify modules directory exists
+RUN ls -la /app/
+RUN ls -la /app/modules/
+RUN ls -la /app/modules/design_excel.py
+
 # Create necessary directories
 RUN mkdir -p vectorestores chroma_db_document_open_source Results
 
