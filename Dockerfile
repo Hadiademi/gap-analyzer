@@ -4,6 +4,9 @@ FROM python:3.11-slim
 # Set working directory
 WORKDIR /app
 
+# Add app directory to Python path
+ENV PYTHONPATH=/app:$PYTHONPATH
+
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     gcc \
@@ -20,10 +23,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the application
 COPY . .
 
-# Verify modules directory exists
-RUN ls -la /app/
-RUN ls -la /app/modules/
-RUN ls -la /app/modules/design_excel.py
+# Debug: Check what was copied
+RUN echo "=== APP DIRECTORY ===" && ls -la /app/
+RUN echo "=== MODULES DIRECTORY ===" && ls -la /app/modules/
+RUN echo "=== DESIGN_EXCEL FILE ===" && ls -la /app/modules/design_excel.py
+RUN echo "=== PYTHON PATH ===" && python -c "import sys; print('Python path:', sys.path)"
 
 # Create necessary directories
 RUN mkdir -p vectorestores chroma_db_document_open_source Results
