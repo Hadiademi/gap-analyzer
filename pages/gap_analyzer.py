@@ -56,15 +56,25 @@ left, middle, right = col2.columns([0.4, 0.1, 0.4])
 
 
 # File uploader for documents
-file = left.file_uploader("", type=['.docx'], help="Policies, Contracts, any")
-if file:
-    st.session_state['doc_is_uploaded'] = True
-    st.session_state['uploaded_file'] = file
-    left.success("File uploaded!", icon="✅")
-    update_disabled_state()
-    right.write("#")
-    middle.write("#")
-else:
+try:
+    file = left.file_uploader("", type=['.docx'], help="Policies, Contracts, any", key="file_uploader")
+    if file is not None:
+        # Validate file size (200MB limit)
+        if file.size > 200 * 1024 * 1024:  # 200MB in bytes
+            left.error("File size too large! Maximum 200MB allowed.")
+        else:
+            st.session_state['doc_is_uploaded'] = True
+            st.session_state['uploaded_file'] = file
+            left.success(f"File uploaded! Size: {file.size / 1024:.1f} KB", icon="✅")
+            update_disabled_state()
+            right.write("#")
+            middle.write("#")
+    else:
+        st.session_state['doc_is_uploaded'] = False
+        st.session_state['uploaded_file'] = None
+        update_disabled_state()
+except Exception as e:
+    left.error(f"Upload error: {str(e)}")
     st.session_state['doc_is_uploaded'] = False
     st.session_state['uploaded_file'] = None
     update_disabled_state()
