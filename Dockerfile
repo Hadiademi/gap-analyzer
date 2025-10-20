@@ -15,10 +15,10 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better caching
-COPY requirements.txt .
+COPY requirements_lite.txt .
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies (lite version for memory optimization)
+RUN pip install --no-cache-dir -r requirements_lite.txt
 
 # Copy the application
 COPY . .
@@ -42,6 +42,10 @@ ENV STREAMLIT_SERVER_HEADLESS=true
 ENV STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
 ENV STREAMLIT_SERVER_ENABLE_CORS=false
 ENV STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION=false
+
+# Memory optimization
+ENV PYTHONUNBUFFERED=1
+ENV MALLOC_ARENA_MAX=2
 
 # Health check
 HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
