@@ -155,7 +155,7 @@ def build_gap_prompt(retrieved_docs, article):
     
     concept_text = concept_text.replace("Title: ", 'Section: ').replace(' SubTitle:', ' SubSection:')
     
-    prompt = f"""You are a senior regulatory compliance consultant conducting a professional gap analysis between a company's internal documentation and regulatory requirements.
+    prompt = f"""You are an expert in market conduct regulation for banks and a senior regulatory compliance consultant conducting a professional gap analysis between a company's internal documentation and regulatory requirements.
 
 **YOUR TASK:**
 Analyze the regulatory article below and identify EVERY requirement. For each requirement, evaluate whether the company's concept document adequately addresses it. Output your findings DIRECTLY in table format.
@@ -173,7 +173,7 @@ Requirement | Covered | Reference | Comment
 1. **Requirement**: Clear description of what the regulatory article requires (30-60 words). Be specific about WHAT must be done.
 2. **Covered**: Only use "Yes", "Partial", or "No"
 3. **Reference**: Exact section/subsection name from company document where requirement is addressed. Use "-" if not covered.
-4. **Comment**: DETAILED professional assessment (MINIMUM 50 words, aim for 60-100 words) explaining:
+4. **Comment**: DETAILED professional assessment (MINIMUM 30 words, aim for 40 words) explaining:
    - For "Yes": Describe HOW the requirement is met, WHICH controls/procedures/evidence exist, and WHERE in the document they are documented. Include specific details about implementation.
    - For "Partial": Explain in detail WHAT aspects are covered, reference specific sections, then clearly describe WHAT specific elements/details/procedures are missing or inadequate. Provide recommendations.
    - For "No": Describe WHAT specific controls/procedures/documentation need to be implemented, WHY they are required by regulation, and provide actionable recommendations for compliance.
