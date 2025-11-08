@@ -7,6 +7,7 @@ enableXsrfProtection = false
 maxUploadSize = 200
 maxMessageSize = 200
 baseUrlPath = ""
+enableStaticServing = true
 
 [browser]
 gatherUsageStats = false
