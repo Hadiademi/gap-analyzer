@@ -12,3 +12,4 @@ requests==2.32.3
 anthropic==0.34.2
 langchain==0.3.7
 langchain-community==0.3.7
+langchain-chroma==0.1.4
