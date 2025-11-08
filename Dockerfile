@@ -18,7 +18,8 @@ RUN apt-get update && apt-get install -y \
 COPY requirements_lite.txt .
 
 # Install Python dependencies (lite version for memory optimization)
-RUN pip install --no-cache-dir -r requirements_lite.txt
+# Use longer timeout and retry logic for network stability
+RUN pip install --no-cache-dir --timeout=300 --retries=5 -r requirements_lite.txt
 
 # Copy the application
 COPY . .
