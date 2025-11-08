@@ -47,6 +47,10 @@ ENV STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION=false
 ENV PYTHONUNBUFFERED=1
 ENV MALLOC_ARENA_MAX=2
 
+# Suppress warnings
+ENV PYTHONWARNINGS="ignore::UserWarning,ignore::DeprecationWarning"
+ENV TORCH_LOGS="ERROR"
+
 # Health check
 HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
 

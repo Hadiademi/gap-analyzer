@@ -13,17 +13,17 @@ def radio_options(page, subcol32, data, selected_subcategory2):
     with subcol32.expander(st.session_state[page]):
         subcategories3 = data.get(selected_subcategory2, [])
 
-        selected_subcategory_list = ["Circular 2023/1 Operational risks and resilience – banks","Circular 2017/1 Corporate governance - banks"]
-        selected_captions = [
-            "Operational risks and resilience framework for banks",
-            "Corporate governance requirements for banks"
-        ]
+        captions_map = {
+            "Circular 2023/1 Operational risks and resilience – banks": "Operational risks and resilience framework for banks",
+            "Circular 2017/1 Corporate governance - banks": "Corporate governance requirements for banks",
+            "Circular 2013/8 Market conduct rules": "Market conduct requirements for securities trading",
+        }
 
         selected_subcategory3 = st.radio(
-            "",
-            selected_subcategory_list,
+            "Select Regulation",
+            subcategories3,
             horizontal=False,
-            captions=selected_captions,
+            captions=[captions_map.get(option) for option in subcategories3] if any(captions_map.get(option) for option in subcategories3) else None,
             index=None,
             label_visibility='collapsed',
         )
@@ -42,9 +42,12 @@ def choose_reg(is_reg_rep):
         "Main": ["(Regulatory and Legal)"],
         "(Regulatory and Legal)": ["FINMA"],
         "FINMA": ["Operational Risk", "Liquidity Risk","Market Risk","Credit Risk","Legal and Compliance Risk" ,"Strategic Risk" ,"Reputational Risk","Other Risk"],
-        "Operational Risk": ["Circular 2023/1 Operational risks and resilience – banks", "Circular 2017/1 Corporate governance - banks"],
+        "Operational Risk": [
+            "Circular 2023/1 Operational risks and resilience – banks",
+            "Circular 2017/1 Corporate governance - banks",
+        ],
         "Liquidity Risk": ["LR 2023/1", "LR 2020/1"],
-        "Market Risk": ["MR 2023/1", "MR 2020/1"],
+        "Market Risk": ["Circular 2013/8 Market conduct rules"],
         "Credit Risk": ["CR 2023/1", "CR 2020/1"],
         "Legal and Compliance Risk": ["LCR 2023/1", "LCR 2020/1"],
         "Strategic Risk": ["SR 2023/1", "SR 2020/1"],

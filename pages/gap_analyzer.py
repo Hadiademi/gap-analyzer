@@ -57,7 +57,7 @@ left, middle, right = col2.columns([0.4, 0.1, 0.4])
 
 # File uploader for documents
 try:
-    file = left.file_uploader("", type=['.docx'], help="Policies, Contracts, any", key="file_uploader")
+    file = left.file_uploader("Upload Document", type=['.docx'], help="Policies, Contracts, any", key="file_uploader", label_visibility="collapsed")
     if file is not None:
         # Validate file size (200MB limit)
         if file.size > 200 * 1024 * 1024:  # 200MB in bytes
@@ -107,6 +107,7 @@ if right.button("**GAP-Analyzer**", help='Perform your gap analysis based on AI'
     regulation_files = {
         'Circular 2023/1 Operational risks and resilience – banks': 'Data/Finma_EN/splitted/finma_optional.xlsx',
         'Circular 2017/1 Corporate governance - banks': 'Data/Finma_EN/splitted/finma2017_open_source_embeddings.xlsx',
+        'Circular 2013/8 Market conduct rules': 'Data/Finma_EN/splitted/finma2013_market_conduct_embeddings.xlsx',
     }
     
     regulation_file = regulation_files.get(regulation_name)

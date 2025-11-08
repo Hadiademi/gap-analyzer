@@ -18,6 +18,8 @@ if st.session_state['regulation_rep'] != "Select a Regulation":
         df = pd.read_excel('Data/Finma_EN/splitted/finma_optional.xlsx')
     elif st.session_state['regulation_rep'] == "Circular 2017/1 Corporate governance - banks":
         df = pd.read_excel('Data/Finma_EN/splitted/finma2017_open_source_embeddings.xlsx')
+    elif st.session_state['regulation_rep'] == "Circular 2013/8 Market conduct rules":
+        df = pd.read_excel('Data/Finma_EN/splitted/finma2013_market_conduct_embeddings.xlsx')
     else:
         df = None
 
